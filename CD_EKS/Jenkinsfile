@@ -16,7 +16,7 @@ pipeline {
          stage('Initializing Terraform'){
             steps{
                 script{
-                    dir('EKS'){
+                    dir('CD_EKS'){
                          sh 'terraform init'
                     }
                 }
@@ -25,7 +25,7 @@ pipeline {
         stage('Formating terraform code'){
             steps{
                 script{
-                    dir('EKS'){
+                    dir('CD_EKS'){
                          sh 'terraform fmt'
                     }
                 }
@@ -34,7 +34,7 @@ pipeline {
         stage('Validating Terraform'){
             steps{
                 script{
-                    dir('EKS'){
+                    dir('CD_EKS'){
                          sh 'terraform validate'
                     }
                 }
@@ -43,7 +43,7 @@ pipeline {
         stage('Previewing the infrastructure'){
             steps{
                 script{
-                    dir('EKS'){
+                    dir('CD_EKS'){
                          sh 'terraform plan'
                     }
                     input(message: "Are you sure to proceed?", ok: "proceed")
@@ -53,7 +53,7 @@ pipeline {
         stage('Creating/Destroying an EKS cluster'){
             steps{
                 script{
-                    dir('EKS'){
+                    dir('CD_EKS'){
                          sh 'terraform $action --auto-approve'
                     }
                 }
@@ -62,7 +62,7 @@ pipeline {
         stage("Deploying Ecom"){
             steps{
                 script{
-                    dir('EKS/configuration-files'){
+                    dir('CD_EKS/configuration-files'){
                         sh 'aws eks update-kubeconfig --name my-eks-cluster'
                         sh 'kubectl apply -f deployment.yml'
                         sh 'kubectl apply -f service.yml'
