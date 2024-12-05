@@ -53,9 +53,9 @@ module "eks" {
 }
 
 # Output cluster_name
-# output "cluster_name" {
-#  value = module.eks.cluster_name
-# }
+output "cluster_name" {
+ value = module.eks.cluster_name
+}
 
 # AWS EKS Cluster Data Source
 data "aws_eks_cluster" "cluster" {
