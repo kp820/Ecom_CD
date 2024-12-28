@@ -3,14 +3,14 @@ pipeline {
     environment {
         AWS_ACCESS_KEY_ID = credentials('AWS_ACCESS_KEY_ID')
         AWS_SECRET_ACCESS_KEY = credentials('AWS_SECRET_ACCESS_KEY')
-        AWS_DEFAULT_REGION = 'us-east-2'
+        AWS_DEFAULT_REGION = 'ap-south-1'
          PATH = "/opt/homebrew/bin:${env.PATH}" //optional
     }
     stages{
         stage('Checkout SCM'){
            steps{
                     git branch: 'main',
-                    url: "https://github.com/DivyaJyothiVundavalli/Ecom_CD.git"
+                    url: "https://github.com/kp820/Ecom_CD.git"
             }
         }
          stage('Initializing Terraform'){
