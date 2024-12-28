@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: ecom-app
-        image: divyavundavalli/ecom_project:latest
+        image: kp420/ecom_project:latest
         ports:
         - containerPort: 5000  # Flask app runs on port 5000
